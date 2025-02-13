@@ -1,32 +1,49 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { ShoppingCart } from "lucide-react";
+import { Link } from "react-router-dom";
+
+import "../index.css";
 
 function ProductCard({ productData }) {
   const [quantity, setQuantity] = useState({});
 
-  const handleQuantity = ({id,value}) => {
-    setQuantity((prev) => ({ ...prev, [id]: value > 0 ? value : 1}));
+  const handleQuantity = (id, value) => {
+    setQuantity((prev) => ({ ...prev, [id]: value }));
   };
 
   return (
-    <div>
-      {productData.map((el) => (
-        <div key={el.id}>
-          <h2>{el.name}</h2>
-          <p>{el.price}</p>
-          <p>{el.description}</p>
-          <div>
-            <input
-              type="number"
-              min="1"
-              value={quantity[el.id] || 1}
-              onChange={() => handleQuantity(el.id,parseInt(e.target.value) || 1)}
-            />
+    <>
+      <div>
+        <Link to="/cart">
+          Go to Cart
+          <ShoppingCart size={24} />
+        </Link>
+      </div>
+
+      <div>
+        {productData.map((el) => (
+          <div key={el.id}>
+            <h2>{el.name}</h2>
+            <p>{el.price}</p>
+            <p>{el.description}</p>
+            <div>
+              <input
+                type="number"
+                min="1"
+                value={quantity[el.id] || 1}
+                onChange={(e) =>
+                  handleQuantity(el.id, parseInt(e.target.value))
+                }
+              />
             </div>
-          <button>ADD to Cart</button>
-        </div>
-      ))}
-    </div>
+            <button>
+              ADD to Cart
+              <ShoppingCart size={20} />
+            </button>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 
