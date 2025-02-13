@@ -31,7 +31,6 @@ function ProductCard({ productData, addToCart, cart }) {
             <div>
               <input
                 type="number"
-                min="1"
                 value={quantity[el.id] || 1}
                 onChange={(e) =>
                   handleQuantity(el.id, e.target.value)
