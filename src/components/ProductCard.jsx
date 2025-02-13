@@ -32,13 +32,14 @@ function ProductCard({ productData, addToCart, cart }) {
               <input
                 type="number"
                 min="1"
-                value={quantity[el.id] || 1}
+                placeholder="1"
+                value={quantity[el.id]}
                 onChange={(e) =>
                   handleQuantity(el.id, e.target.value)
                 }
               />
             </div>
-            <button onClick={() => addToCart(el,quantity[el.id] || 1)}>
+            <button onClick={() => addToCart(el,quantity[el.id])}>
               ADD to Cart
               <ShoppingCart size={20} />
             </button>
