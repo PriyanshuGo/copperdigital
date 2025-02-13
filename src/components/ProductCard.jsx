@@ -22,7 +22,7 @@ function ProductCard({ productData, addToCart, cart }) {
         </Link>
       </div>
 
-      <div onClick={()=>setQuantity(1)}>
+      <div>
         {productData.map((el) => (
           <div key={el.id}>
             <h2>{el.name}</h2>
@@ -31,6 +31,7 @@ function ProductCard({ productData, addToCart, cart }) {
             <div>
               <input
                 type="number"
+                min="1"
                 value={quantity[el.id] || 1}
                 onChange={(e) =>
                   handleQuantity(el.id, e.target.value)
